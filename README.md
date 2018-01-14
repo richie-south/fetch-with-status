@@ -19,29 +19,30 @@ yarn add fetch-with-status
 
 # API
 
-## Status handler
+## on
 
-Starts with `on` then continues with status code ex `on400`.
-
-What gets returned from status handler get passed to original promise chain.
+Takes a number and a function
+What gets returned from status handler get passed to original promise chain after execution.
 
 ### Syntax
 
 ```javascript
-  .on206((request) => {})
+  .on(206, (request) => {})
 ```
 
 ### Parameters
 
+* number: desired status code
 * function:
     * param:
         * response: fetch response object
     * returns: any
 
 ### Return value
-_self_ so we can chain multible status handlers
+_self_ so we can chain multible `on`
 
 ## Build
+
 ### Syntax
 
 ```javascript
@@ -66,7 +67,7 @@ const {withStatus} = require('fetch-with-status')
 withStatus(fetch(/*URL*/))
   // then add all the status handlers you want
   // the full request object is returned in all handlers
-  .on206((request) => {
+  .on(206, (request) => {
     console.log('we got an 206 response')
   })
   // after you added all your desired handlers call .build
@@ -83,16 +84,16 @@ withStatus(fetch(/*URL*/))
 const {withStatus} = require('fetch-with-status')
 
 withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
-  .on200((request) => {
+  .on(200, (request) => {
     // only requests with status 200 land here
-    return on200.json()
+    return request.json()
   })
-  .on404((request) => {
+  .on(404, (request) => {
     // only requests with status 404 land here
     throw new Error('Oh no!')
   })
   .build()
-  // now we have a normal promise and all returns from fns above land here
+  // now we have a normal promise and return value from executed fn above land here
   .then((json) => {
 
     console.log(json)
