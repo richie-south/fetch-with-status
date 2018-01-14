@@ -30,6 +30,5 @@ const withStatusReturn = withStatus(fetch('https://jsonplaceholder.typicode.com/
 
 # TODO:
 - make stuff immutable (more fp)
-- more status codes
 - tests
 
