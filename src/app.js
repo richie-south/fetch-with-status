@@ -1,21 +1,12 @@
-import {statusCodes} from './status-codes'
-
-const buildHttpStucture = (fn) =>
-  statusCodes.reduce((structure, statusCode) => ({
-    ...structure,
-    [`on${statusCode}`]: fn(statusCode),
-  }), {})
-
 export const withStatus = (fetchPromise) => {
   const store = []
 
-  const status = (status) => (fn) => {
+  const on = (status, fn) => {
     store.push({
       status,
       fn,
     })
 
-    delete structure[`on${status}`]
     return structure
   }
 
@@ -33,7 +24,7 @@ export const withStatus = (fetchPromise) => {
       })
 
   const structure = {
-    ...buildHttpStucture(status),
+    on,
     build,
   }
 
