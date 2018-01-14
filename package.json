@@ -4,6 +4,7 @@
   "description": "fetch with status helpers",
   "main": "./src/app.js",
   "scripts": {
+    "build": "rm -rf dist && NODE_ENV=production ./node_modules/.bin/webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +24,13 @@
   },
   "homepage": "https://github.com/richie-south/fetch-with-status#readme",
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.37",
+    "@babel/preset-env": "^7.0.0-beta.37",
+    "babel-loader": "^8.0.0-beta.0",
     "eslint": "^4.15.0",
-    "isomorphic-fetch": "^2.2.1"
+    "isomorphic-fetch": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0"
   }
 }
