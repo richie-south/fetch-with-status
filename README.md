@@ -6,7 +6,7 @@ fetch with status helpers
 ```javascript
 const {withStatus} = require('fetch-with-status')
 
-const withStatusReturn = withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
+withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
   .on200((on200) => {
     // only requests with status 200 land here
     return on200.json()
@@ -24,8 +24,6 @@ const withStatusReturn = withStatus(fetch('https://jsonplaceholder.typicode.com/
   .catch((error) => {
     console.log('error', error.message)
   })
-
-  console.log('withStatusReturn', withStatusReturn)
 ```
 
 # TODO:
