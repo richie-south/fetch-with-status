@@ -39,3 +39,5 @@ export const withStatus = (fetchPromise) => {
 
   return structure
 }
+
+export default withStatus
