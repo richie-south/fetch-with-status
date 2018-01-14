@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/richie-south/fetch-with-status#readme",
   "devDependencies": {
+    "eslint": "^4.15.0",
     "isomorphic-fetch": "^2.2.1"
   }
 }
