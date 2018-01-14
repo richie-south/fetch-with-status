@@ -10,7 +10,9 @@ module.exports = {
   },
   output: {
     filename: 'bundle.[hash].js',
+    library: ['fetch-with-status'],
     path: path.join(__dirname, '/dist'),
+    libraryTarget: 'commonjs2',
   },
 
   module: {
