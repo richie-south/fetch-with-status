@@ -1,3 +1,15 @@
+const statusCodes = require('http').STATUS_CODES
+
+const buildHttpStucture = (fn) => {
+  const structure = {}
+
+  for (const statusCode in statusCodes) {
+    structure[`on${statusCode}`] = fn(statusCode)
+  }
+
+  return structure
+}
+
 const withStatus = (fetchPromise) => {
   const store = []
 
@@ -27,9 +39,10 @@ const withStatus = (fetchPromise) => {
       })
   }
 
+
+
   const structure = {
-    on200: status(200),
-    on404: status(404),
+    ...buildHttpStucture(status),
     build,
   }
 
