@@ -1,8 +1,8 @@
 {
   "name": "fetch-with-status",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "fetch with status helpers",
-  "main": "./dist/bundle.8add237d1c84e410d3ec.js",
+  "main": "./dist/fetch-with-status.js",
   "scripts": {
     "build": "rm -rf dist && NODE_ENV=production ./node_modules/.bin/webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
