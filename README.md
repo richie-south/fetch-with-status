@@ -4,7 +4,7 @@ fetch with status helpers
 [![npm version](https://badge.fury.io/js/fetch-with-status.svg)](https://badge.fury.io/js/fetch-with-status)
 
 ```javascript
-const withStatus = require('./src/app')
+const {withStatus} = require('fetch-with-status')
 
 const withStatusReturn = withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
   .on200((on200) => {
