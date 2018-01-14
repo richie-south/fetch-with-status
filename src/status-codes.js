@@ -1,4 +1,4 @@
-module.exports = [
+export const statusCodes = [
   100,
   101,
   102,

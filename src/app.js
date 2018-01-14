@@ -1,4 +1,4 @@
-const statusCodes = require('./status-codes')
+import {statusCodes} from './status-codes'
 
 const buildHttpStucture = (fn) =>
   statusCodes.reduce((structure, statusCode) => ({
@@ -6,7 +6,7 @@ const buildHttpStucture = (fn) =>
     [`on${statusCode}`]: fn(statusCode),
   }), {})
 
-const withStatus = (fetchPromise) => {
+export const withStatus = (fetchPromise) => {
   const store = []
 
   const status = (status) => (fn) => {
@@ -39,5 +39,3 @@ const withStatus = (fetchPromise) => {
 
   return structure
 }
-
-module.exports = withStatus
