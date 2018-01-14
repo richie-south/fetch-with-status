@@ -1,6 +1,8 @@
 # fetch-with-status
 fetch with status helpers
 
+[![npm version](https://badge.fury.io/js/fetch-with-status.svg)](https://badge.fury.io/js/fetch-with-status)
+
 ```javascript
 const withStatus = require('./src/app')
 
