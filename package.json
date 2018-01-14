@@ -1,0 +1,28 @@
+{
+  "name": "fetch-with-status",
+  "version": "1.0.0",
+  "description": "fetch with status helpers",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richie-south/fetch-with-status.git"
+  },
+  "keywords": [
+    "fetch",
+    "statuscodes",
+    "status",
+    "wrapper"
+  ],
+  "author": "richard söderman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richie-south/fetch-with-status/issues"
+  },
+  "homepage": "https://github.com/richie-south/fetch-with-status#readme",
+  "devDependencies": {
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
