@@ -1,5 +1,7 @@
 # fetch-with-status
-fetch with status helpers
+fetch with status helpers.
+
+A small lib so you remember to check the status code of your request.
 
 [![npm version](https://badge.fury.io/js/fetch-with-status.svg)](https://badge.fury.io/js/fetch-with-status)
 
