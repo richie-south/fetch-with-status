@@ -1,7 +1,7 @@
 export const withStatus = (fetchPromise) => {
   const store = []
 
-  const on = (status, fn) => {
+  const when = (status, fn) => {
     store.push({
       status,
       fn,
@@ -24,7 +24,7 @@ export const withStatus = (fetchPromise) => {
       })
 
   const structure = {
-    on,
+    when,
     build,
   }
 
