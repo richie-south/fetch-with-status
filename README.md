@@ -19,15 +19,16 @@ yarn add fetch-with-status
 
 # API
 
-## on
+## when
 
-Takes a number and a function
+Takes a number and a function.
+
 What gets returned from status handler get passed to original promise chain after execution.
 
 ### Syntax
 
 ```javascript
-  .on(206, (request) => {})
+  .when(206, (request) => {})
 ```
 
 ### Parameters
@@ -67,7 +68,7 @@ const {withStatus} = require('fetch-with-status')
 withStatus(fetch(/*URL*/))
   // then add all the status handlers you want
   // the full request object is returned in all handlers
-  .on(206, (request) => {
+  .when(206, (request) => {
     console.log('we got an 206 response')
   })
   // after you added all your desired handlers call .build
@@ -84,11 +85,11 @@ withStatus(fetch(/*URL*/))
 const {withStatus} = require('fetch-with-status')
 
 withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
-  .on(200, (request) => {
+  .when(200, (request) => {
     // only requests with status 200 land here
     return request.json()
   })
-  .on(404, (request) => {
+  .when(404, (request) => {
     // only requests with status 404 land here
     throw new Error('Oh no!')
   })
