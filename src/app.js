@@ -7,7 +7,7 @@ export const withStatus = (fetchPromise) => {
       fn,
     })
 
-    return structure
+    return publicApi
   }
 
   const build = () =>
@@ -23,12 +23,12 @@ export const withStatus = (fetchPromise) => {
         return object.fn(res)
       })
 
-  const structure = {
+  const publicApi = {
     when,
     build,
   }
 
-  return structure
+  return publicApi
 }
 
 export default withStatus
