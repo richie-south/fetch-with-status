@@ -20,7 +20,8 @@ export const withStatus = (fetchPromise) => {
           return res
         }
 
-        return object.fn(res)
+        return new Promise (resolve =>
+          object.fn(res, value => resolve(value)))
       })
 
   const publicApi = {
