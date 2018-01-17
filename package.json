@@ -1,6 +1,6 @@
 {
   "name": "fetch-with-status",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "fetch with status helpers",
   "main": "./dist/fetch-with-status.js",
   "scripts": {
