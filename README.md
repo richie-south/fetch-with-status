@@ -30,15 +30,16 @@ What gets returned from status handler get passed to original promise chain afte
 ### Syntax
 
 ```javascript
-  .when(206, (request) => {})
+  .when(206, (request, next) => {})
 ```
 
 ### Parameters
 
 * number: desired status code
 * function:
-    * param:
+    * params:
         * response: fetch response object
+        * next: call `next()` if you want to continue to the standard .then promise chain
     * returns: any
 
 ### Return value
@@ -66,16 +67,27 @@ _Promise_: originl fetch promise
 // Require it like this
 const {withStatus} = require('fetch-with-status')
 
-//Wrap your fetch with the `withStatus` function
+// Wrap your fetch with the `withStatus` function
 withStatus(fetch(/*URL*/))
   // then add all the status handlers you want
   // the full request object is returned in all handlers
+  .when(200, (request, next) => {
+    console.log('we got an 206 response')
+    // if you want to continue down the promise chain call 'next'
+    // and your value will be passed down to the first .then
+    next(request.json())
+  })
+
   .when(206, (request) => {
+    // here we don't call next because we don't want to continue down the promise chain
     console.log('we got an 206 response')
   })
   // after you added all your desired handlers call .build
   .build()
-  // now we return the original promise so you can add a .catch or chain .then
+  // now we have the original promise so we can add .then:s and a .catch
+  .then(() => {
+    // only request with handlers that call 'next' appear here
+  })
   .catch((error) => {
 
   })
@@ -96,7 +108,7 @@ withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
     throw new Error('Oh no!')
   })
   .build()
-  // now we have a normal promise and return value from executed fn above land here
+  // now we have the original promise and return value from executed handlers above land here
   .then((json) => {
 
     console.log(json)
