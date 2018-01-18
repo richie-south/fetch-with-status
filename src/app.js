@@ -3,7 +3,7 @@ export const withStatus = (fetchPromise) => {
 
   const when = (status, fn) => {
     store.push({
-      status,
+      status: [].concat(status),
       fn,
     })
 
@@ -14,7 +14,7 @@ export const withStatus = (fetchPromise) => {
     fetchPromise
       .then((res) => {
         const object = store.find((({status}) =>
-          status === res.status))
+          status.includes(res.status)))
 
         if (!object) {
           return res
