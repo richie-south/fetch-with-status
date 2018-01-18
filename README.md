@@ -13,6 +13,23 @@ npm install fetch-with-status
 yarn add fetch-with-status
 ```
 
+# example
+
+```javascript
+const {withStatus} = require('fetch-with-status')
+
+withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
+  .when(200, (request) =>
+    request.json())
+  .when([404, 405], (request) =>
+    throw new Error('Oh no!'))
+  .build()
+  .then((json) =>
+    console.log(json))
+  .catch((error) =>
+    console.log('error', error.message))
+```
+
 ## Summary
 
 * [API](#api)
@@ -23,19 +40,21 @@ yarn add fetch-with-status
 
 ## when
 
-Takes a number and a function.
+Takes a number | array of numbers and a function.
 
-What gets returned from status handler get passed to original promise chain after execution.
+What gets returned from executed .when get passed to original promise chain after execution.
 
 ### Syntax
 
 ```javascript
   .when(206, (request, next) => {})
+
+  .when([206, 500], (request, next) => {})
 ```
 
 ### Parameters
 
-* number: desired status code
+* number || Array of numbers: desired status code:s
 * function:
     * params:
         * response: fetch response object
@@ -43,7 +62,7 @@ What gets returned from status handler get passed to original promise chain afte
     * returns: any
 
 ### Return value
-_self_ so we can chain multible `on`
+_self_ so we can chain multible `.when`
 
 ## Build
 
@@ -78,9 +97,9 @@ withStatus(fetch(/*URL*/))
     next(request.json())
   })
 
-  .when(206, (request) => {
+  .when([404, 405, 406], (request) => {
     // here we don't call next because we don't want to continue down the promise chain
-    console.log('we got an 206 response')
+    console.log('we got an 404, 405 or 406 response')
   })
   // after you added all your desired handlers call .build
   .build()
@@ -90,31 +109,6 @@ withStatus(fetch(/*URL*/))
   })
   .catch((error) => {
 
-  })
-```
-
-## example
-
-```javascript
-const {withStatus} = require('fetch-with-status')
-
-withStatus(fetch('https://jsonplaceholder.typicode.com/posts/1'))
-  .when(200, (request) => {
-    // only requests with status 200 land here
-    return request.json()
-  })
-  .when(404, (request) => {
-    // only requests with status 404 land here
-    throw new Error('Oh no!')
-  })
-  .build()
-  // now we have the original promise and return value from executed handlers above land here
-  .then((json) => {
-
-    console.log(json)
-  })
-  .catch((error) => {
-    console.log('error', error.message)
   })
 ```
 
